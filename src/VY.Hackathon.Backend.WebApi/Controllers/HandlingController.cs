@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using VY.Hackathon.Backend.Business.Contracts;
 using VY.Hackathon.Backend.Domain.Dto;
 using VY.Hackathon.Backend.WebApi.Helpers;
@@ -17,6 +18,7 @@ public class HandlingController
     }
 
     [HttpGet]
+    [Authorize]
     [ProducesResponseType(typeof(ResultDto<IEnumerable<HandlingDto>>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetByDateRange(DateTime startDate, DateTime endDate)
     {

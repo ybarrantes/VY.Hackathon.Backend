@@ -3,6 +3,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using VY.Hackathon.Backend.Domain.Entities;
 using VY.Hackathon.Backend.Repository;
 using VY.Hackathon.Backend.WebApi.IoC;
@@ -69,8 +70,22 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services
     .AddEndpointsApiExplorer()
-    .AddDependencies()
-    .AddSwaggerGen();
+    .AddHttpClient()
+    .AddHackathonDependencies()
+    .AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new OpenApiInfo {Title = "TestWebApi", Version = "v1"});
+
+        c.AddSecurityDefinition(JwtBearerDefaults.AuthenticationScheme,
+            new OpenApiSecurityScheme
+            {
+                Description = "JWT Authorization header using the Bearer scheme.",
+                Name = JwtBearerDefaults.AuthenticationScheme, // Authorization
+                In = ParameterLocation.Header,
+                Type = SecuritySchemeType.Http,
+                Scheme = "bearer"
+            });
+    });
 
 var app = builder.Build();
 
