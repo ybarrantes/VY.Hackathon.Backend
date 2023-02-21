@@ -9,17 +9,18 @@ namespace VY.Hackathon.Backend.Proxy;
 public class HandlingProxy : IHandlingProxy
 {
     private readonly HttpClient _httpClient;
+    private readonly string _handlingEndpoint;
 
     public HandlingProxy(HttpClient httpClient)
     {
         _httpClient = httpClient;
+        _handlingEndpoint = $"{_httpClient.BaseAddress}handling";
     }
     
     public async Task<OperationResult<IEnumerable<HandlingDto>>> GetHandlingByDay(HandlingProxyRequest handlingRequestDto)
     {
-        var endpoint = $"{_httpClient.BaseAddress}/handling";
         var response = await _httpClient
-            .PostAsJsonAsync(endpoint, handlingRequestDto);
+            .PostAsJsonAsync(_handlingEndpoint, handlingRequestDto);
 
         if (response.IsSuccessStatusCode)
         {

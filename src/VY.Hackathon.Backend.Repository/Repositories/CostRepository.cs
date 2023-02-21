@@ -23,4 +23,29 @@ public class CostRepository : ICostRepository
             ? new OperationResult<IEnumerable<Cost>>(new ErrorResult("Not found", ErrorType.NotFound)) 
             : new OperationResult<IEnumerable<Cost>>(costs);
     }
+
+    public async Task<OperationResult<Cost>> GetOne(Guid id)
+    {
+        var cost = await _dbContext.Costs.FindAsync(id);
+
+        return cost == null 
+            ? new OperationResult<Cost>(new ErrorResult("Not found", ErrorType.NotFound)) 
+            : new OperationResult<Cost>(cost);
+    }
+    
+    public async Task<OperationResult<bool>> UpdateList(IEnumerable<Cost> items)
+    {
+        foreach (var item in items)
+        {
+            var founded = await _dbContext.Costs
+                .Where(x => x.EmployeeType.Equals(item.EmployeeType))
+                .FirstAsync();
+
+            founded.FullTimeCost = item.FullTimeCost;
+            founded.PartTimeCost = item.PartTimeCost;
+        }
+
+        await _dbContext.SaveChangesAsync();
+        return new OperationResult<bool>(true);
+    }
 }
