@@ -44,13 +44,13 @@ public class CostServiceTests
     public async Task Test_GetCosts_When_Operation_Success()
     {
         // arrange
-        var data = new List<Cost>
+        var expectedData = new List<Cost>
         {
             new() { EmployeeType = "Yobal", FullTimeCost = 10.25m, PartTimeCost = 7.5m },
             new() { EmployeeType = "TrianSixx", FullTimeCost = 8.25m, PartTimeCost = 6m }
         };
         
-        var mockedObject = new OperationResult<IEnumerable<Cost>>(data);
+        var mockedObject = new OperationResult<IEnumerable<Cost>>(expectedData);
         
         _costRepositoryMock.Setup(x => x.GetAll())
             .ReturnsAsync(mockedObject);
@@ -63,6 +63,18 @@ public class CostServiceTests
         Assert.NotNull(result);
         Assert.True(result.IsSuccessful);
         Assert.NotNull(result.Result);
-        Assert.Equal(2, result.Result.Count());
+
+        var resultList = result.Result.ToList();
+        
+        Assert.Equal(2, resultList.Count);
+
+        var i = 0;
+        foreach (var costDto in resultList)
+        {
+            Assert.Equal(expectedData[i].EmployeeType, costDto.EmployeeType);
+            Assert.Equal(expectedData[i].FullTimeCost, costDto.FullTimeCost);
+            Assert.Equal(expectedData[i].PartTimeCost, costDto.PartTimeCost);
+            i++;
+        }
     }
 }

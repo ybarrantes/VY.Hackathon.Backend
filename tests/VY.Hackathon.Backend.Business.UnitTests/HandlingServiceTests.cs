@@ -82,12 +82,12 @@ public class HandlingServiceTests
         };
         var costsResult = new OperationResult<IEnumerable<CostDto>>(costList);
 
-        var handlingList = new List<HandlingDto>
+        var expectedData = new List<HandlingDto>
         {
-            new() { HandlingFunction = "Yobal" },
-            new() { HandlingFunction = "TrianSixx" }
+            new() { HandlingFunction = "Yobal", FullTimeCost = 18.52m, PartTimeCost = 5, PartTimeEmployees = 3, FullTimeEmployees = 1, TotalCost = 52.37m, TotalEmployees = 4, Hour = 7, Day = DateTime.Now },
+            new() { HandlingFunction = "TrianSixx", FullTimeCost = 6.52m, PartTimeCost = 9, PartTimeEmployees = 1, FullTimeEmployees = 5, TotalCost = 52.37m, TotalEmployees = 6, Hour = 9, Day = DateTime.Now }
         };
-        var handlingResult = new OperationResult<IEnumerable<HandlingDto>>(handlingList);
+        var handlingResult = new OperationResult<IEnumerable<HandlingDto>>(expectedData);
 
         _costServiceMock.Setup(x => x.GetCosts())
             .ReturnsAsync(costsResult);
@@ -103,6 +103,24 @@ public class HandlingServiceTests
         Assert.NotNull(result);
         Assert.True(result.IsSuccessful);
         Assert.NotNull(result.Result);
-        Assert.Equal(2, result.Result.Count());
+        
+
+        var resultList = result.Result.ToList();
+        Assert.Equal(2, resultList.Count);
+        
+        var i = 0;
+        foreach (var handlingDto in resultList)
+        {
+            Assert.Equal(expectedData[i].Day, handlingDto.Day);
+            Assert.Equal(expectedData[i].Hour, handlingDto.Hour);
+            Assert.Equal(expectedData[i].HandlingFunction, handlingDto.HandlingFunction);
+            Assert.Equal(expectedData[i].FullTimeCost, handlingDto.FullTimeCost);
+            Assert.Equal(expectedData[i].PartTimeCost, handlingDto.PartTimeCost);
+            Assert.Equal(expectedData[i].TotalCost, handlingDto.TotalCost);
+            Assert.Equal(expectedData[i].TotalEmployees, handlingDto.TotalEmployees);
+            Assert.Equal(expectedData[i].FullTimeEmployees, handlingDto.FullTimeEmployees);
+            Assert.Equal(expectedData[i].PartTimeEmployees, handlingDto.PartTimeEmployees);
+            i++;
+        }
     }
 }
