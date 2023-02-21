@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using VY.Hackathon.Backend.Business.Contracts;
 using VY.Hackathon.Backend.Domain.Dto;
+using VY.Hackathon.Backend.WebApi.Helpers;
 
 namespace VY.Hackathon.Backend.WebApi.Controllers;
 
@@ -25,7 +26,7 @@ public class UserController : ControllerBase
     {
         var response = await _authenticationService.Login(request);
 
-        return Ok(response);
+        return response.MapToApiResponse();
     }
 
     [AllowAnonymous]
@@ -37,6 +38,6 @@ public class UserController : ControllerBase
     {
         var response = await _authenticationService.Register(request);
 
-        return Ok(response);
+        return response.MapToApiResponse();
     }
 }

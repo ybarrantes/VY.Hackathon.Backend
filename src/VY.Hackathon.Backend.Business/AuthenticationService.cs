@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using VY.Hackathon.Backend.Business.Contracts;
 using VY.Hackathon.Backend.Domain.Dto;
 using VY.Hackathon.Backend.Domain.Entities;
+using VY.Hackathon.Backend.Domain.Poco;
 
 namespace VY.Hackathon.Backend.Business;
 
@@ -21,7 +22,7 @@ public class AuthenticationService : IAuthenticationService
         _configuration = configuration;
     }
 
-    public async Task<string> Register(RegisterRequest request)
+    public async Task<OperationResult<string>> Register(RegisterRequest request)
     {
         var userByEmail = await _userManager.FindByEmailAsync(request.Email);
         var userByUsername = await _userManager.FindByNameAsync(request.Username);
@@ -48,7 +49,7 @@ public class AuthenticationService : IAuthenticationService
         return await Login(new LoginRequest { Username = request.Email, Password = request.Password });
     }
 
-    public async Task<string> Login(LoginRequest request)
+    public async Task<OperationResult<string>> Login(LoginRequest request)
     {
         var user = await _userManager.FindByNameAsync(request.Username) ?? await _userManager.FindByEmailAsync(request.Username);
 
@@ -68,8 +69,9 @@ public class AuthenticationService : IAuthenticationService
         authClaims.AddRange(userRoles.Select(userRole => new Claim(ClaimTypes.Role, userRole)));
 
         var token = GetToken(authClaims);
+        var serializedToken = new JwtSecurityTokenHandler().WriteToken(token);
 
-        return new JwtSecurityTokenHandler().WriteToken(token);
+        return new OperationResult<string>(serializedToken);
     }
 
     private JwtSecurityToken GetToken(IEnumerable<Claim> authClaims)

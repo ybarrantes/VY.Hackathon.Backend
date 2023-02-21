@@ -1,9 +1,10 @@
 ﻿using VY.Hackathon.Backend.Domain.Dto;
+using VY.Hackathon.Backend.Domain.Poco;
 
 namespace VY.Hackathon.Backend.Business.Contracts;
 
 public interface IAuthenticationService
 {
-    Task<string> Register(RegisterRequest request);
-    Task<string> Login(LoginRequest request);
+    Task<OperationResult<string>> Register(RegisterRequest request);
+    Task<OperationResult<string>> Login(LoginRequest request);
 }

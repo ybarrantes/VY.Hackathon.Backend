@@ -7,7 +7,7 @@ namespace VY.Hackathon.Backend.WebApi.IoC;
 
 public static class RegisterDependencies
 {
-    public static IServiceCollection AddDependencies(this IServiceCollection serviceCollection)
+    public static IServiceCollection AddHackathonDependencies(this IServiceCollection serviceCollection)
     {
         RegisterRepositories(serviceCollection);
         RegisterServices(serviceCollection);
