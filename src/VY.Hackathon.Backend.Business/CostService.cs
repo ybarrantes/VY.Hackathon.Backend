@@ -1,20 +1,35 @@
 ﻿using VY.Hackathon.Backend.Business.Contracts;
 using VY.Hackathon.Backend.Domain.Dto;
 using VY.Hackathon.Backend.Domain.Poco;
+using VY.Hackathon.Backend.Domain.Repository;
 
 namespace VY.Hackathon.Backend.Business;
 
 public class CostService : ICostService
 {
+    private readonly ICostRepository _costRepository;
+
+    public CostService(ICostRepository costRepository)
+    {
+        _costRepository = costRepository;
+    }
+    
     public async Task<OperationResult<IEnumerable<CostDto>>> GetCosts()
     {
-        var mock = new List<CostDto>
+        var costRepositoryResult = await _costRepository.GetAll();
+
+        if (!costRepositoryResult.IsSuccessful)
         {
-            new() { EmployeeType = "JARDINERA", FullTimeCost = 6, PartTimeCost = 7.25m },
-            new() { EmployeeType = "COORDINACIÓN", FullTimeCost = 10, PartTimeCost = 8.5m },
-            new() { EmployeeType = "EQUIPAJE", FullTimeCost = 7.25m, PartTimeCost = 7m },
-        };
+            return new OperationResult<IEnumerable<CostDto>>(costRepositoryResult.Errors);
+        }
+
+        var mapped = costRepositoryResult.Result.Select(x => new CostDto
+        {
+            EmployeeType = x.EmployeeType,
+            FullTimeCost = x.FullTimeCost,
+            PartTimeCost = x.PartTimeCost
+        });
         
-        return new OperationResult<IEnumerable<CostDto>>(mock);
+        return new OperationResult<IEnumerable<CostDto>>(mapped);
     }
 }
