@@ -1,12 +1,8 @@
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Configuration;
-using System;
 using System.Text;
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
-
 using VY.Hackathon.Backend.Domain.Entities;
 using VY.Hackathon.Backend.Repository;
 using VY.Hackathon.Backend.WebApi.IoC;
@@ -37,7 +33,7 @@ builder.Services.AddAuthentication(options =>
         {
             options.SaveToken = true;
             options.RequireHttpsMetadata = false;
-            options.TokenValidationParameters = new TokenValidationParameters()
+            options.TokenValidationParameters = new TokenValidationParameters
                                                     {
                                                         ValidateIssuer = true,
                                                         ValidateAudience = true,
