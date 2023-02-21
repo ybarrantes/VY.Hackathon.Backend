@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Presentation", "1. Presentation", "{5FBFD5D5-3689-4F17-A7C9-374B1620B7AA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Service", "2. Service", "{3BD6E694-5D8C-43B5-95EA-E5B9ABB88D6E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Domain", "3. Domain", "{1B25BF8D-1538-4B48-A7B4-C9669E81D6E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Infrastructure", "4. Infrastructure", "{132CE3AE-CC9A-433E-927E-2D4BC7D72E77}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VY.Hackathon.Backend.Business", "src\VY.Hackathon.Backend.Business\VY.Hackathon.Backend.Business.csproj", "{1234B009-7649-421F-A32C-3F9AC225A080}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VY.Hackathon.Backend.Domain", "src\VY.Hackathon.Backend.Domain\VY.Hackathon.Backend.Domain.csproj", "{BAB3D59F-BC7C-4488-BBEE-7813C342CE1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VY.Hackathon.Backend.Business.UnitTests", "tests\VY.Hackathon.Backend.Business.UnitTests\VY.Hackathon.Backend.Business.UnitTests.csproj", "{A6C5D2E7-F7B7-4B83-9C60-C2E9263F9E10}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Tests", "5. Tests", "{CFAB3A00-5BAF-4D09-9AC7-1FDA56BD4E02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VY.Hackathon.Backend.WebApi", "src\VY.Hackathon.Backend.WebApi\VY.Hackathon.Backend.WebApi.csproj", "{A7345A3E-4207-44EF-9F32-FD26068FEB62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1234B009-7649-421F-A32C-3F9AC225A080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1234B009-7649-421F-A32C-3F9AC225A080}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1234B009-7649-421F-A32C-3F9AC225A080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1234B009-7649-421F-A32C-3F9AC225A080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAB3D59F-BC7C-4488-BBEE-7813C342CE1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAB3D59F-BC7C-4488-BBEE-7813C342CE1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAB3D59F-BC7C-4488-BBEE-7813C342CE1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAB3D59F-BC7C-4488-BBEE-7813C342CE1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6C5D2E7-F7B7-4B83-9C60-C2E9263F9E10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6C5D2E7-F7B7-4B83-9C60-C2E9263F9E10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6C5D2E7-F7B7-4B83-9C60-C2E9263F9E10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6C5D2E7-F7B7-4B83-9C60-C2E9263F9E10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7345A3E-4207-44EF-9F32-FD26068FEB62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7345A3E-4207-44EF-9F32-FD26068FEB62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7345A3E-4207-44EF-9F32-FD26068FEB62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7345A3E-4207-44EF-9F32-FD26068FEB62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1234B009-7649-421F-A32C-3F9AC225A080} = {3BD6E694-5D8C-43B5-95EA-E5B9ABB88D6E}
+		{BAB3D59F-BC7C-4488-BBEE-7813C342CE1B} = {1B25BF8D-1538-4B48-A7B4-C9669E81D6E4}
+		{A6C5D2E7-F7B7-4B83-9C60-C2E9263F9E10} = {CFAB3A00-5BAF-4D09-9AC7-1FDA56BD4E02}
+		{A7345A3E-4207-44EF-9F32-FD26068FEB62} = {5FBFD5D5-3689-4F17-A7C9-374B1620B7AA}
+	EndGlobalSection
+EndGlobal
