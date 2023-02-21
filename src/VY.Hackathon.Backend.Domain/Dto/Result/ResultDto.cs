@@ -1,4 +1,4 @@
-﻿namespace VY.Hackathon.Backend.Domain.Dto;
+﻿namespace VY.Hackathon.Backend.Domain.Dto.Result;
 
 public class ResultDto<TResult>
 {

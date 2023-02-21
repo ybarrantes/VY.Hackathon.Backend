@@ -1,7 +1,8 @@
 ﻿using VY.Hackathon.Backend.Business.Contracts;
+using VY.Hackathon.Backend.Domain.Contracts.Repository;
 using VY.Hackathon.Backend.Domain.Dto;
+using VY.Hackathon.Backend.Domain.Entities;
 using VY.Hackathon.Backend.Domain.Poco;
-using VY.Hackathon.Backend.Domain.Repository;
 
 namespace VY.Hackathon.Backend.Business;
 
@@ -31,5 +32,15 @@ public class CostService : ICostService
         });
         
         return new OperationResult<IEnumerable<CostDto>>(mapped);
+    }
+
+    public async Task<OperationResult<bool>> UpdateCosts(IEnumerable<CostDto> costs)
+    {
+        return await _costRepository.UpdateList(costs.Select(x => new Cost
+        {
+            EmployeeType = x.EmployeeType,
+            FullTimeCost = x.FullTimeCost,
+            PartTimeCost = x.PartTimeCost
+        }));
     }
 }

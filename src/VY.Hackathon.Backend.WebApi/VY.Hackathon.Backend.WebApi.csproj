@@ -21,11 +21,13 @@
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="7.0.3" />
+        <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\VY.Hackathon.Backend.Business\VY.Hackathon.Backend.Business.csproj" />
+      <ProjectReference Include="..\VY.Hackathon.Backend.Proxy\VY.Hackathon.Backend.Proxy.csproj" />
       <ProjectReference Include="..\VY.Hackathon.Backend.Repository\VY.Hackathon.Backend.Repository.csproj" />
     </ItemGroup>
 

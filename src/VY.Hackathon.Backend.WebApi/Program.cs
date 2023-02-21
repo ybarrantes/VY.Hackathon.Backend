@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using VY.Hackathon.Backend.Domain.Entities;
 using VY.Hackathon.Backend.Repository;
 using VY.Hackathon.Backend.WebApi.IoC;
@@ -11,7 +12,15 @@ using VY.Hackathon.Backend.WebApi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
-// Add services to the container.
+
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
+
 
 // DbContext
 builder.Services.AddDbContext<AppDbContext>(options => 
@@ -71,7 +80,7 @@ builder.Services.AddControllers();
 builder.Services
     .AddEndpointsApiExplorer()
     .AddHttpClient()
-    .AddHackathonDependencies()
+    .AddHackathonDependencies(configuration)
     .AddSwaggerGen(c =>
     {
         c.SwaggerDoc("v1", new OpenApiInfo {Title = "TestWebApi", Version = "v1"});

@@ -1,34 +1,37 @@
 ﻿using VY.Hackathon.Backend.Business.Contracts;
+using VY.Hackathon.Backend.Domain.Contracts.Proxies;
 using VY.Hackathon.Backend.Domain.Dto;
+using VY.Hackathon.Backend.Domain.Dto.Proxies;
 using VY.Hackathon.Backend.Domain.Poco;
 
 namespace VY.Hackathon.Backend.Business;
 
 public class HandlingService : IHandlingService
 {
-    public HandlingService()
+    private readonly IHandlingProxy _handlingProxy;
+    private readonly ICostService _costService;
+
+    public HandlingService(IHandlingProxy handlingProxy, ICostService costService)
     {
-        
+        _handlingProxy = handlingProxy;
+        _costService = costService;
     }
 
     public async Task<OperationResult<IEnumerable<HandlingDto>>> GetHandlingByDateRange(DateTime startDate, DateTime endDate)
     {
-        var mockResult = new List<HandlingDto>
+        var costsResult = await _costService.GetCosts();
+
+        if (!costsResult.IsSuccessful)
         {
-            new HandlingDto
-            {
-                Day = new DateTime(2023, 2, 21),
-                Hour = 6,
-                HandlingFunction = "",
-                TotalCost = 20,
-                TotalEmployees = 1,
-                FullTimeCost = 30,
-                FullTimeEmployees = 10,
-                PartTimeCost = 50.5m,
-                PartTimeEmployees = 8
-            }
+            return new OperationResult<IEnumerable<HandlingDto>>(costsResult.Errors);
+        }
+
+        var handlingProxyRequest = new HandlingProxyRequest
+        {
+            Day = startDate.ToString("yyyy-MM-dd"),
+            Costs = costsResult.Result
         };
 
-        return new OperationResult<IEnumerable<HandlingDto>>(mockResult);
+        return await _handlingProxy.GetHandlingByDay(handlingProxyRequest);
     }
 }

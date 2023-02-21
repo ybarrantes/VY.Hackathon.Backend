@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using VY.Hackathon.Backend.Business.Contracts;
-using VY.Hackathon.Backend.Domain.Dto;
+using VY.Hackathon.Backend.Domain.Dto.Requests;
 using VY.Hackathon.Backend.WebApi.Helpers;
 
 namespace VY.Hackathon.Backend.WebApi.Controllers;
