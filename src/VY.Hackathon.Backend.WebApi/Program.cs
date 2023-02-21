@@ -13,7 +13,8 @@ var configuration = builder.Configuration;
 // Add services to the container.
 
 // DbContext
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("VuelingEmployees")));
+builder.Services.AddDbContext<AppDbContext>(options => 
+    options.UseSqlServer(configuration.GetConnectionString("VuelingEmployees")));
 
 // Identity
 builder.Services.AddIdentity<User, IdentityRole>()
