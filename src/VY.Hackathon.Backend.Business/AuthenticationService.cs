@@ -1,12 +1,9 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
-
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Text;
-
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-
 using VY.Hackathon.Backend.Business.Contracts;
 using VY.Hackathon.Backend.Domain.Dto;
 using VY.Hackathon.Backend.Domain.Entities;
@@ -52,7 +49,7 @@ public class AuthenticationService : IAuthenticationService
 
     public async Task<string> Login(LoginRequest request)
     {
-        var user = await this._userManager.FindByNameAsync(request.Username) ?? await this._userManager.FindByEmailAsync(request.Username);
+        var user = await _userManager.FindByNameAsync(request.Username) ?? await _userManager.FindByEmailAsync(request.Username);
 
         if (user is null || !await _userManager.CheckPasswordAsync(user, request.Password))
         {
@@ -85,7 +82,7 @@ public class AuthenticationService : IAuthenticationService
         return token;
     }
 
-    private string GetErrorsText(IEnumerable<IdentityError> errors)
+    private static string GetErrorsText(IEnumerable<IdentityError> errors)
     {
         return string.Join(", ", errors.Select(error => error.Description).ToArray());
     }

@@ -8,7 +8,7 @@ public static class RegisterDependencies
 {
     public static IServiceCollection AddDependencies(this IServiceCollection serviceCollection)
     {
-        serviceCollection.TryAddSingleton<IHandlingService, HandlingService>();
+        serviceCollection.AddSingleton<IHandlingService, HandlingService>();
         serviceCollection.AddScoped<IAuthenticationService, AuthenticationService>();
         return serviceCollection;
     } 

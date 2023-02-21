@@ -29,8 +29,4 @@
       <ProjectReference Include="..\VY.Hackathon.Backend.Repository\VY.Hackathon.Backend.Repository.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Authorization\" />
-    </ItemGroup>
-
 </Project>
