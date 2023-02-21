@@ -1,6 +1,7 @@
 ﻿using VY.Hackathon.Backend.Business.Contracts;
 using VY.Hackathon.Backend.Domain.Dto;
 using VY.Hackathon.Backend.Domain.Poco;
+
 namespace VY.Hackathon.Backend.Business;
 
 public class HandlingService : IHandlingService
@@ -10,7 +11,7 @@ public class HandlingService : IHandlingService
         
     }
 
-    public OperationResult<IEnumerable<HandlingDto>> GetHandlingByDateRange(DateTime startDate, DateTime endDate)
+    public async Task<OperationResult<IEnumerable<HandlingDto>>> GetHandlingByDateRange(DateTime startDate, DateTime endDate)
     {
         var mockResult = new List<HandlingDto>
         {
@@ -27,7 +28,7 @@ public class HandlingService : IHandlingService
                 PartTimeEmployees = 8
             }
         };
-        
+
         return new OperationResult<IEnumerable<HandlingDto>>(mockResult);
     }
 }

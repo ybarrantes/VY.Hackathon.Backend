@@ -5,5 +5,5 @@ namespace VY.Hackathon.Backend.Business.Contracts;
 
 public interface IHandlingService
 {
-    OperationResult<IEnumerable<HandlingDto>> GetHandlingByDateRange(DateTime startDate, DateTime endDate);
+    Task<OperationResult<IEnumerable<HandlingDto>>> GetHandlingByDateRange(DateTime startDate, DateTime endDate);
 }

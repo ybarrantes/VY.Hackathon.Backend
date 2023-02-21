@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VY.Hackathon.Backend.Business.Contracts;
 using VY.Hackathon.Backend.Domain.Dto;
-using VY.Hackathon.Backend.Domain.Extensions;
+using VY.Hackathon.Backend.WebApi.Helpers;
 
 namespace VY.Hackathon.Backend.WebApi.Controllers;
 
@@ -17,10 +17,10 @@ public class HandlingController
     }
 
     [HttpGet]
-    public ResultDto<IEnumerable<HandlingDto>> GetByDateRange(DateTime startDate, DateTime endDate)
+    [ProducesResponseType(typeof(ResultDto<IEnumerable<HandlingDto>>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetByDateRange(DateTime startDate, DateTime endDate)
     {
-        var handlingResult = _handlingService.GetHandlingByDateRange(startDate, endDate);
-        
-        return handlingResult.MapToResultDto();
+        var handlingResult = await _handlingService.GetHandlingByDateRange(startDate, endDate);
+        return handlingResult.MapToApiResponse();
     }
 }
