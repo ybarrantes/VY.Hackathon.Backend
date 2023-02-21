@@ -2,6 +2,6 @@
 
 public record HandlingProxyRequest
 {
-    public DateTime Day { get; set; }
+    public string Day { get; set; }
     public IEnumerable<CostDto> Costs { get; set; }
 }

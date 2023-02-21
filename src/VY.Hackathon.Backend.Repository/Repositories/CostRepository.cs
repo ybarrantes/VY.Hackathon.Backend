@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using VY.Hackathon.Backend.Domain.Contracts.Repository;
 using VY.Hackathon.Backend.Domain.Entities;
 using VY.Hackathon.Backend.Domain.Poco;
@@ -9,15 +10,19 @@ namespace VY.Hackathon.Backend.Repository.Repositories;
 public class CostRepository : ICostRepository
 {
     private readonly AppDbContext _dbContext;
+    private readonly ILogger<CostRepository> _logger;
 
-    public CostRepository(AppDbContext dbContext)
+    public CostRepository(AppDbContext dbContext, ILogger<CostRepository> logger)
     {
         _dbContext = dbContext;
+        _logger = logger;
     }
     
     public async Task<OperationResult<IEnumerable<Cost>>> GetAll()
     {
         var costs = await _dbContext.Costs.ToListAsync();
+        
+        _logger.LogInformation("Test info");
 
         return (costs?.Count ?? 0) == 0 
             ? new OperationResult<IEnumerable<Cost>>(new ErrorResult("Not found", ErrorType.NotFound)) 

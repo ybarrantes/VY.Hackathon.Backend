@@ -28,7 +28,7 @@ public class HandlingService : IHandlingService
 
         var handlingProxyRequest = new HandlingProxyRequest
         {
-            Day = startDate,
+            Day = startDate.ToString("yyyy-MM-dd"),
             Costs = costsResult.Result
         };
 
