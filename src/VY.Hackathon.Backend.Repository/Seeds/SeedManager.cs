@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using VY.Hackathon.Backend.Domain.Entities;
 
-namespace VY.Hackathon.Backend.Repository;
+namespace VY.Hackathon.Backend.Repository.Seeds;
 
 public static class SeedManager
 {

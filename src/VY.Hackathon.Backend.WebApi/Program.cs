@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using Serilog;
 using VY.Hackathon.Backend.Domain.Entities;
 using VY.Hackathon.Backend.Repository;
+using VY.Hackathon.Backend.Repository.Seeds;
 using VY.Hackathon.Backend.WebApi.IoC;
 using VY.Hackathon.Backend.WebApi.Middleware;
 
