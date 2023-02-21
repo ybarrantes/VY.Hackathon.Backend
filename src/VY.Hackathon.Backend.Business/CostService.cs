@@ -1,7 +1,7 @@
 ﻿using VY.Hackathon.Backend.Business.Contracts;
+using VY.Hackathon.Backend.Domain.Contracts.Repository;
 using VY.Hackathon.Backend.Domain.Dto;
 using VY.Hackathon.Backend.Domain.Poco;
-using VY.Hackathon.Backend.Domain.Repository;
 
 namespace VY.Hackathon.Backend.Business;
 

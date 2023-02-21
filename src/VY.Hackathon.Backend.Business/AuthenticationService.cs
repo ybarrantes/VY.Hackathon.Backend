@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using VY.Hackathon.Backend.Business.Contracts;
-using VY.Hackathon.Backend.Domain.Dto;
+using VY.Hackathon.Backend.Domain.Dto.Requests;
 using VY.Hackathon.Backend.Domain.Entities;
 using VY.Hackathon.Backend.Domain.Poco;
 

@@ -71,7 +71,7 @@ builder.Services.AddControllers();
 builder.Services
     .AddEndpointsApiExplorer()
     .AddHttpClient()
-    .AddHackathonDependencies()
+    .AddHackathonDependencies(configuration)
     .AddSwaggerGen(c =>
     {
         c.SwaggerDoc("v1", new OpenApiInfo {Title = "TestWebApi", Version = "v1"});

@@ -1,4 +1,4 @@
-﻿using VY.Hackathon.Backend.Domain.Dto;
+﻿using VY.Hackathon.Backend.Domain.Dto.Requests;
 using VY.Hackathon.Backend.Domain.Poco;
 
 namespace VY.Hackathon.Backend.Business.Contracts;

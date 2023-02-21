@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using VY.Hackathon.Backend.Business.Contracts;
 using VY.Hackathon.Backend.Domain.Dto;
+using VY.Hackathon.Backend.Domain.Dto.Result;
 using VY.Hackathon.Backend.Domain.Entities;
 using VY.Hackathon.Backend.WebApi.Helpers;
 

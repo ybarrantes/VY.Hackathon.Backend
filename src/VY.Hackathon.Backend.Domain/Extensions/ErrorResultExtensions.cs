@@ -1,4 +1,4 @@
-﻿using VY.Hackathon.Backend.Domain.Dto;
+﻿using VY.Hackathon.Backend.Domain.Dto.Result;
 using VY.Hackathon.Backend.Domain.Poco;
 
 namespace VY.Hackathon.Backend.Domain.Extensions;

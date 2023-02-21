@@ -1,6 +1,6 @@
 ﻿namespace VY.Hackathon.Backend.Domain.Dto;
 
-public class CostDto
+public record CostDto
 {
     public DateTime? Day { get; set; }
     public string EmployeeType { get; set; }

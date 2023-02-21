@@ -7,5 +7,5 @@ public enum ErrorType
     Forbidden = 403,
     NotFound = 404,
     Unhandled = 500,
-    RepositoryError = 600
+    Infrastructure = 600
 }

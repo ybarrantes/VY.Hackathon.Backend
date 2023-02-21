@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using VY.Hackathon.Backend.Domain.Contracts.Repository;
 using VY.Hackathon.Backend.Domain.Entities;
 using VY.Hackathon.Backend.Domain.Poco;
-using VY.Hackathon.Backend.Domain.Repository;
 using VY.Hackathon.Backend.Domain.Types;
 
 namespace VY.Hackathon.Backend.Repository.Repositories;
